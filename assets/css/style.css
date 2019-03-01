@@ -1,0 +1,21 @@
+/* 
+	CSS by Dan Høegh
+	UCN MMD 2018 
+*/
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: sans-serif;
+	padding: 5vw;
+	font-size: 4vw;
+	line-height: 1.4;
+}
+
+@media (min-width: 640px) {
+	body {
+		font-size: 1rem;
+	}
+}
