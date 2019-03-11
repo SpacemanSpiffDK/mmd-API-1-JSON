@@ -7,7 +7,7 @@ const data = {
             "address": "Søndre havnegade 74<br>9000 Aalborg",
             "email": "<a href='contact@mysite.com'>contact@mysite.com</a>"
         },
-        "titlePrepend": "",
+        "titlePrepend": "ツ ",
         "titleAppend": " | The JSON Company"
     },
     "pages": [
@@ -105,7 +105,7 @@ const data = {
     ]
 };
 
-console.log(data);
+// console.log(data);
 
 window.onload = function(){
     // get pageId from URL, if no pageID, then let it be 0
@@ -188,15 +188,14 @@ function drawTemplateNews(page){
         <h1>${page.content.header}</h1>
         <img class="news-image" src="${page.content.image}" alt="${page.content.header}">
         <div class="text">${page.content.text}</div>
-        <h2>Latest news</h2>
+        ${newsList()}
     `;
-    content += newsList();
+
     drawData("root", content);
-    
 }
 
 function newsList(){
-    let newsListString = "";
+    let newsListString = "<h2>Latest news</h2>";
     for (let i=0;i<data.news.length;i++){
         let item = data.news[i];
         newsListString += `
@@ -227,9 +226,9 @@ function findPageById(pageId){
     return page;
 }
 
-function drawData(elmId, newContent){
-    // elmId is where we want the data, newContent is the new data
-    document.getElementById(elmId).innerHTML = newContent;
+function drawData(elementId, newContent){
+    // elementId is where we want the data, newContent is the new data
+    document.getElementById(elementId).innerHTML = newContent;
 }
 
 function getPageIdFromUrl(){
