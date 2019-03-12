@@ -12,7 +12,7 @@ const data = {
     },
     "pages": [
         {
-            "id": 312,
+            "id": 1,
             "metaData":
             {
                 "name": "Home",
@@ -34,7 +34,7 @@ const data = {
             }
         },
         {
-            "id": 12,
+            "id": 2,
             "metaData":
             {
                 "name": "About us",
@@ -53,7 +53,7 @@ const data = {
             }
         },
         {
-            "id": 13,
+            "id": 3,
             "metaData":
             {
                 "name": "About you",
@@ -72,7 +72,7 @@ const data = {
             }
         },
         {
-            "id": 32,
+            "id": 4,
             "metaData":
             {
                 "name": "News",
@@ -90,7 +90,7 @@ const data = {
     ],
     "news": [
         {
-            "id": 87,
+            "id": 5,
             "metaData": {
                 "date": "March 9 2019",
                 "title": "News - New employees",
@@ -106,7 +106,39 @@ const data = {
             }
         },
         {
-            "id": 94,
+            "id": 6,
+            "metaData": {
+                "date": "March 10 2019",
+                "title": "News - More color",
+                "visible": true
+            },
+            "content": {
+                "header": "More color on the walls",
+                "image": "assets/images/img4.jpg",
+                "teaser": "We've been splashing about the place",
+                "text":
+                    "<p>White walls are boring, let's spice the place up a bit.</p>" +
+                    "<p>Aliquam sit amet sem ac ligula sodales suscipit vel in nulla. Vivamus sit amet faucibus justo, dictum vehicula urna. Cras dui orci, consectetur non risus nec, tincidunt rhoncus metus. Morbi et tempus elit. Fusce venenatis quam et metus malesuada, porttitor congue metus posuere. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse sit amet venenatis massa. Fusce nec odio porttitor, eleifend erat eget, scelerisque purus. Nulla facilisi. Integer viverra vulputate consectetur. Duis sit amet luctus quam. Mauris bibendum, metus sed lobortis imperdiet, nisi sapien aliquam lacus, ac elementum sapien tortor sit amet diam. Nullam et mi libero.</p>"
+            }
+        },
+        {
+            "id": 7,
+            "metaData": {
+                "date": "March 9 2019",
+                "title": "News - New employees",
+                "visible": true
+            },
+            "content": {
+                "header": "New employees",
+                "image": "assets/images/img3.jpg",
+                "teaser": "We've just hired more staff!",
+                "text":
+                    "<p>Due to a rapid increase in the amount of incoming orders, we are happy to announce that we have hired several new members of staff.</p>" +
+                    "<p>Aliquam sit amet sem ac ligula sodales suscipit vel in nulla. Vivamus sit amet faucibus justo, dictum vehicula urna. Cras dui orci, consectetur non risus nec, tincidunt rhoncus metus. Morbi et tempus elit. Fusce venenatis quam et metus malesuada, porttitor congue metus posuere. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse sit amet venenatis massa. Fusce nec odio porttitor, eleifend erat eget, scelerisque purus. Nulla facilisi. Integer viverra vulputate consectetur. Duis sit amet luctus quam. Mauris bibendum, metus sed lobortis imperdiet, nisi sapien aliquam lacus, ac elementum sapien tortor sit amet diam. Nullam et mi libero.</p>"
+            }
+        },
+        {
+            "id": 8,
             "metaData": {
                 "date": "March 10 2019",
                 "title": "News - More color",
@@ -171,16 +203,20 @@ function drawPage(pageId){
     let page = findPageById(pageId);
     drawTitle(page);
 
+    
     // get template
     const template = page.metaData.template;
     switch (template) {
         case "page":
-            drawTemplatePage(page);
-            break;
+        drawTemplatePage(page);
+        break;
         case "news":
-            drawTemplateNews(page);
-            break;
+        drawTemplateNews(page);
+        break;
     }
+    let templateClass = `template-${template}`;
+    // add template type to body as css class
+    document.getElementsByTagName('body')[0].classList.add(templateClass);
 }
 
 function drawTitle(page){
