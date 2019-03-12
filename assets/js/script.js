@@ -53,6 +53,25 @@ const data = {
             }
         },
         {
+            "id": 13,
+            "metaData":
+            {
+                "name": "About you",
+                "title": "About you",
+                "template": "page",
+                "visible": false
+            },
+            "content": {
+                "header": "Info about you",
+                "image": "assets/images/img2.jpg",
+                "text":
+                    "<p>Morbi porta maximus faucibus. Nulla mollis mollis ultricies. Nunc vel lectus mollis, faucibus tellus non, consequat nulla. Donec et rhoncus velit. Nam commodo placerat mauris, ut sagittis ipsum consectetur vestibulum. Duis quis turpis vel nisi venenatis imperdiet. Cras pretium semper scelerisque. Morbi lobortis fermentum massa, ac ultricies ex interdum sed. Mauris sit amet nulla venenatis, tincidunt dolor non, feugiat elit. Integer pellentesque ut diam at suscipit. Phasellus eget dolor euismod, varius orci nec, porta ligula. Sed convallis turpis mauris, at pellentesque nisl dictum sed.</p>" +
+                    "<p>Aliquam sit amet sem ac ligula sodales suscipit vel in nulla. Vivamus sit amet faucibus justo, dictum vehicula urna. Cras dui orci, consectetur non risus nec, tincidunt rhoncus metus. Morbi et tempus elit. Fusce venenatis quam et metus malesuada, porttitor congue metus posuere. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse sit amet venenatis massa. Fusce nec odio porttitor, eleifend erat eget, scelerisque purus. Nulla facilisi. Integer viverra vulputate consectetur. Duis sit amet luctus quam. Mauris bibendum, metus sed lobortis imperdiet, nisi sapien aliquam lacus, ac elementum sapien tortor sit amet diam. Nullam et mi libero.</p>" +
+                    "<p>Suspendisse nec fermentum ligula. Cras sagittis tristique neque, ut sollicitudin nunc lacinia vel. Proin volutpat consequat accumsan. Etiam vel justo turpis. Nullam finibus, erat eget cursus tempus, risus libero hendrerit sem, sed aliquam erat mi in elit. Vestibulum aliquam mi eros, eu tempus sem sagittis a. Nullam aliquam libero a sem placerat, eget rutrum nisl feugiat. Quisque in maximus sem, vel rhoncus orci. Donec condimentum leo erat, at rutrum nunc egestas non. Nullam consectetur dictum ante nec euismod. In nibh dui, euismod a rhoncus sed, congue vitae libero.</p>" +
+                    "<p>Phasellus facilisis dignissim enim, pharetra facilisis lectus luctus ac. Phasellus at porttitor orci. Ut ultricies massa risus, eu feugiat arcu bibendum ut. Etiam eu semper orci. Ut at accumsan sem. Praesent ut dui volutpat orci interdum tincidunt. Quisque tincidunt, nulla facilisis gravida varius, velit urna pretium tortor, eu viverra eros arcu vel ex. Duis lobortis scelerisque tellus, vitae dignissim erat eleifend sed.</p>"
+            }
+        },
+        {
             "id": 32,
             "metaData":
             {
@@ -115,7 +134,6 @@ window.onload = function(){
 
 function drawSite(pageId){
     if (pageId == 0){
-        // find the first page with "rootpage" == true and set that id as pageId
         for (let i=0; i<data.pages.length; i++){
             if (data.pages[i].metaData.rootPage === true){
                 pageId = data.pages[i].id;
@@ -130,12 +148,20 @@ function drawSite(pageId){
 
 function drawNav(currentPageId){
     let navString = "<ul>";
-    for (let i=0; i<data.pages.length; i++){
-        let activePage = "";
-        if(data.pages[i].id == currentPageId) {
-            activePage = "class='active'";
+    for (let i=0; i < data.pages.length; i++){
+        if (data.pages[i].metaData.visible){
+            let activePage = "";
+            if (data.pages[i].id == currentPageId){
+                activePage = "class='active'";
+            }
+            navString += `
+                <li ${activePage}>
+                    <a href="index.html?pageId=${data.pages[i].id}">
+                        ${data.pages[i].metaData.name}
+                    </a>
+                </li>
+            `;
         }
-        navString += `<li ${activePage}><a href="index.html?pageId=${data.pages[i].id}">${data.pages[i].metaData.name}</a></li>`;
     }
     navString += "</ul>";
     drawData("navigation", navString);
