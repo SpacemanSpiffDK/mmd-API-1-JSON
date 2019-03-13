@@ -2,7 +2,7 @@
 // UCN MMD 2018
 
 // This code is for educational purposes
-// All code decision are based on students current level
+// All code decision are based on the current level of the students
 
 const data = {
     "site": {
