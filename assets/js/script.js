@@ -236,7 +236,7 @@ function drawNav(currentPageId){
             }
             navString += `
                 <li ${activePage}>
-                    <a href="index.html?pageId=${data.pages[i].id}">
+                    <a href="?pageId=${data.pages[i].id}">
                         ${data.pages[i].metaData.name}
                     </a>
                 </li>
