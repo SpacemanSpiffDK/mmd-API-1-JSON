@@ -1,6 +1,9 @@
 // JS by Dan Høegh
 // UCN MMD 2018
 
+// This code is for educational purposes
+// All code decision are based on students current level
+
 const data = {
     "site": {
         "footer": {
