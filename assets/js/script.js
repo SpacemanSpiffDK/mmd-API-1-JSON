@@ -192,9 +192,26 @@ function getPageIdFromUrl(){
     // get pageId from URL, if no pageId, then let it be 0
     let pageId = 0;
     let url = window.location.href; 
+    // first we check to see if there is a "pageId" in the url
     if(url.indexOf("pageId") > -1){ 
-        let ulrSplit = url.split("?pageId=");
-        pageId = ulrSplit[1];
+        let urlSplit = url.split("?"); // there's never more than one "?" in a URL, so we can split it in two here
+        // check for more than one parameter (if there's one or more "&" then there's more parameters)
+        if (urlSplit[1].indexOf("&") == -1){
+            let parameterSplit = urlSplit[1].split("="); // only one parameter, let's split it by the "=" sign
+            pageId = parameterSplit[1]; // let pageId be the item with index 1 (the last of the two)
+        } else {
+            // several parameters, let's find pageId among them
+            // first let's split it up by the "&"s that must be there
+            let urlParameters = urlSplit[1].split("&"); // loop through the items in the array we got from splitting by "&"
+            for (let i=0; i < urlParameters.length; i++){
+                // if this item's first six characters are "pageId" we got the right one
+                if (urlParameters[i].substring(0,6) == "pageId"){
+                    let pageIdSplit = urlParameters[i].split("="); // get the pageId from this item
+                    pageId = pageIdSplit[1]; // let pageId be the item with index 1 (the last of the two)
+                    break; // end the loop since we found the right one
+                }
+            }
+        }
     } 
     return pageId;
 }
