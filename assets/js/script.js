@@ -177,7 +177,7 @@ const data = {
 
 // output the JSON data object to console. 
 // This is only done so that we can click through it in the developer console. 
-// Not needed to make stuff work
+// Not needed to make stuff work!
 console.log(data); 
 
 window.onload = function(){
@@ -261,11 +261,11 @@ function drawPage(pageId){
     const template = page.metaData.template;
     switch (template) {
         case "page":
-        drawTemplatePage(page);
-        break;
+            drawTemplatePage(page);
+            break;
         case "news":
-        drawTemplateNews(page);
-        break;
+            drawTemplateNews(page);
+            break;
     }
 
     // add template type to body as css class
