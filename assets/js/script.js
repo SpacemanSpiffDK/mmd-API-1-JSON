@@ -234,8 +234,8 @@ function drawNav(currentPageId){
             if (data.pages[i].id == currentPageId){
                 activePage = "class='active'";
             }
-            // link is now only "?pageId=[id]" instead of "index.html?pageId=[id]" since this 
-            // stops the site from reloading when using the navigation
+            // link is now only "?pageId=[id]" instead of "index.html?pageId=[id]"  
+            // since this stops the site from reloading when using the navigation
             navString += `
                 <li ${activePage}>
                     <a href="?pageId=${data.pages[i].id}">
