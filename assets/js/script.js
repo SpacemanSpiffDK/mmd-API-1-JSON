@@ -242,7 +242,7 @@ function drawFooter(){
         <address id="address">${data.site.footer.address}</address>
         <div id="email">${data.site.footer.email}</div>
     `;
-    drawData("footer", footerString);
+    drawHtml("footer", footerString);
 }
 
 function drawNav(currentPageId){
@@ -266,7 +266,7 @@ function drawNav(currentPageId){
         }
     }
     navString += "</ul>";
-    drawData("navigation", navString);
+    drawHtml("navigation", navString);
 }
 
 function drawPage(pageId){
@@ -320,7 +320,7 @@ function drawTemplatePage(page){
         </article>
     `;
 
-    drawData("root", content);
+    drawHtml("root", content);
 }
 
 function drawTemplateNews(page){
@@ -332,7 +332,7 @@ function drawTemplateNews(page){
         ${newsList()}
     `;
 
-    drawData("root", content);
+    drawHtml("root", content);
 }
 
 function newsList(){
@@ -357,8 +357,7 @@ function newsList(){
     return newsListString;
 }
 
-function drawData(elementId, newContent){
+function drawHtml(elementId, newContent){
     // elementId is where we want the data, newContent is the new data
     document.getElementById(elementId).innerHTML = newContent;
 }
-
