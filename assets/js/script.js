@@ -183,13 +183,11 @@ const data = {
 // Not needed to make stuff work!
 console.log(data); 
 
-window.onload = function(){
-    // get our current page id from the URL
-    let pageId = getPageIdFromUrl();
-    
-    // call on the drawSite function, use pageId to specify which page we want to draw
-    drawSite(pageId);
-}
+// get our current page id from the URL
+let pageId = getPageIdFromUrl();
+
+// call on the drawSite function, use pageId to specify which page we want to draw
+drawSite(pageId);
 
 function getPageIdFromUrl(){
     // get pageId from URL, if no pageId, then let it be 0
