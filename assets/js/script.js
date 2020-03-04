@@ -192,22 +192,23 @@ drawSite(pageId);
 function getPageIdFromUrl(){
     // get pageId from URL, if no pageId, then let it be 0
     let pageId = 0;
-    let url = window.location.href; 
+    const url = window.location.href; 
+
     // first we check to see if there is a "pageId" in the url
-    if(url.indexOf("pageId") > -1){ 
-        let urlSplit = url.split("?"); // there's never more than one "?" in a URL, so we can split it in two here
+    if(url.indexOf("pageId") != -1){ 
+        const urlSplit = url.split("?"); // there's never more than one "?" in a URL, so we can split it in two here
         // check for more than one parameter (if there's one or more "&" then there's more parameters)
         if (urlSplit[1].indexOf("&") == -1){
-            let parameterSplit = urlSplit[1].split("="); // only one parameter, let's split it by the "=" sign
+            const parameterSplit = urlSplit[1].split("="); // only one parameter, let's split it by the "=" sign
             pageId = parameterSplit[1]; // let pageId be the item with index 1 (the last of the two)
         } else {
             // several parameters, let's find pageId among them
             // first let's split it up by the "&"s that must be there
-            let urlParameters = urlSplit[1].split("&"); // loop through the items in the array we got from splitting by "&"
+            const urlParameters = urlSplit[1].split("&"); // loop through the items in the array we got from splitting by "&"
             for (let i=0; i < urlParameters.length; i++){
                 // if this item's first six characters are "pageId" we got the right one
                 if (urlParameters[i].substring(0,6) == "pageId"){
-                    let pageIdSplit = urlParameters[i].split("="); // get the pageId from this item
+                    const pageIdSplit = urlParameters[i].split("="); // get the pageId from this item
                     pageId = pageIdSplit[1]; // let pageId be the item with index 1 (the last of the two)
                     break; // end the loop since we found the right one
                 }
@@ -235,7 +236,7 @@ function drawSite(pageId){
 
 function drawFooter(){
     // draw the footer
-    let footerString = `
+    const footerString = `
         <h4>Contact us:</h4>
         <address id="address">${data.site.footer.address}</address>
         <div id="email">${data.site.footer.email}</div>
@@ -269,12 +270,11 @@ function drawNav(currentPageId){
 
 function drawPage(pageId){
     // get a page object that fits pageId
-    let page = findPageById(pageId);
+    const page = findPageById(pageId);
     
     // draw the title, draw the content
     drawTitle(page);
-    
-    
+        
     // figure out which template to use for this page
     const template = page.metaData.template;
     switch (template) {
@@ -287,7 +287,7 @@ function drawPage(pageId){
     }
 
     // add template type to body as css class
-    let templateClass = `template-${template}`;
+    const templateClass = `template-${template}`;
     document.getElementsByTagName('body')[0].classList.add(templateClass);
 }
 
@@ -310,7 +310,7 @@ function drawTitle(page){
 
 function drawTemplatePage(page){
     // draw a normal page
-    let content = `
+    const content = `
         <article>
             <h1>${page.content.header}</h1>
             <img class="page-image" src="${page.content.image}" alt="${page.content.header}">
@@ -323,7 +323,7 @@ function drawTemplatePage(page){
 
 function drawTemplateNews(page){
     // draw a news page
-    let content = `
+    const content = `
         <h1>${page.content.header}</h1>
         <img class="news-image" src="${page.content.image}" alt="${page.content.header}">
         <div class="text">${page.content.text}</div>
