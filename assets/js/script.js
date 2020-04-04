@@ -146,32 +146,32 @@ const data = {
         {
             "id": 7,
             "metaData": {
-                "date": "March 9 2019",
-                "title": "News - New employees",
+                "date": "March 11 2019",
+                "title": "News - New stairs",
                 "visible": true
             },
             "content": {
-                "header": "New employees",
+                "header": "New stairs",
                 "image": "assets/images/img3.jpg",
-                "teaser": "We've just hired more staff!",
+                "teaser": "We've just added more stairs!",
                 "text":
-                    "<p>Due to a rapid increase in the amount of incoming orders, we are happy to announce that we have hired several new members of staff.</p>" +
+                    "<p>Due to a rapid increase in the amount of incoming orders, we are happy to announce that we have added several new stairs.</p>" +
                     "<p>Aliquam sit amet sem ac ligula sodales suscipit vel in nulla. Vivamus sit amet faucibus justo, dictum vehicula urna. Cras dui orci, consectetur non risus nec, tincidunt rhoncus metus. Morbi et tempus elit. Fusce venenatis quam et metus malesuada, porttitor congue metus posuere. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse sit amet venenatis massa. Fusce nec odio porttitor, eleifend erat eget, scelerisque purus. Nulla facilisi. Integer viverra vulputate consectetur. Duis sit amet luctus quam. Mauris bibendum, metus sed lobortis imperdiet, nisi sapien aliquam lacus, ac elementum sapien tortor sit amet diam. Nullam et mi libero.</p>"
             }
         },
         {
             "id": 8,
             "metaData": {
-                "date": "March 10 2019",
-                "title": "News - More color",
+                "date": "March 12 2019",
+                "title": "News - More cups",
                 "visible": true
             },
             "content": {
-                "header": "More color on the walls",
+                "header": "New mugs in the tea kitchen",
                 "image": "assets/images/img4.jpg",
-                "teaser": "We've been splashing about the place",
+                "teaser": "Out with the old mugs!",
                 "text":
-                    "<p>White walls are boring, let's spice the place up a bit.</p>" +
+                    "<p>The old mugs were boring, we've bought some new ones!</p>" +
                     "<p>Aliquam sit amet sem ac ligula sodales suscipit vel in nulla. Vivamus sit amet faucibus justo, dictum vehicula urna. Cras dui orci, consectetur non risus nec, tincidunt rhoncus metus. Morbi et tempus elit. Fusce venenatis quam et metus malesuada, porttitor congue metus posuere. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse sit amet venenatis massa. Fusce nec odio porttitor, eleifend erat eget, scelerisque purus. Nulla facilisi. Integer viverra vulputate consectetur. Duis sit amet luctus quam. Mauris bibendum, metus sed lobortis imperdiet, nisi sapien aliquam lacus, ac elementum sapien tortor sit amet diam. Nullam et mi libero.</p>"
             }
         }
@@ -255,11 +255,10 @@ function drawNav(currentPageId){
             }
             // link is now only "?pageId=[id]" instead of "index.html?pageId=[id]"
             // Site still reloads on click, but just using the parameter is cleaner
+            const page = data.pages[i];
             navString += `
                 <li ${activePage}>
-                    <a href="?pageId=${data.pages[i].id}">
-                        ${data.pages[i].metaData.name}
-                    </a>
+                    <a href="?pageId=${page.id}">${page.metaData.name}</a>
                 </li>
             `;
         }
@@ -338,19 +337,21 @@ function newsList(){
     let newsListString = "<h2>Latest news</h2>";
     for (let i=0;i < data.news.length;i++){
         let item = data.news[i];
-        newsListString += `
-            <article class="newsItem">
-                <h3>${item.content.header}</h3>
-                <div class="date">${item.metaData.date}</div>
-                <div class="teaser">${item.content.teaser}</div>
-                <div class="text-wrapper">
-                    <div class="image-wrapper">
-                        <img class="image" src="${item.content.image}" alt="${item.content.header}">
+        if (item.metaData.visible){
+            newsListString += `
+                <article class="newsItem">
+                    <h3>${item.content.header}</h3>
+                    <div class="date">${item.metaData.date}</div>
+                    <div class="teaser">${item.content.teaser}</div>
+                    <div class="text-wrapper">
+                        <div class="image-wrapper">
+                            <img class="image" src="${item.content.image}" alt="${item.content.header}">
+                        </div>
+                        <div class="text">${item.content.text}</div>
                     </div>
-                    <div class="text">${item.content.text}</div>
-                </div>
-            </article>
-        `;
+                </article>
+            `;
+        }
     }
     return newsListString;
 }
